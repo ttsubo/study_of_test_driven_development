@@ -13,7 +13,7 @@ class Money(Expression):
         return Money(self.__amount * multiplier, self.__currency)
 
     def plus(self, addend):
-        return Money(self.__amount + addend.__amount, self.__currency)
+        return Sum(self, addend)
 
     def currency(self):
         return self.__currency
@@ -25,3 +25,8 @@ class Money(Expression):
     @classmethod
     def franc(cls, amount):
         return Money(amount, "CHF")
+
+class Sum(Expression):
+    def __init__(self, augend, addend):
+        self.augend = augend
+        self.addend = addend
