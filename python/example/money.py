@@ -15,6 +15,9 @@ class Money(Expression):
     def plus(self, addend):
         return Sum(self, addend)
 
+    def amount(self):
+        return self.__amount
+
     def currency(self):
         return self.__currency
 
@@ -30,3 +33,7 @@ class Sum(Expression):
     def __init__(self, augend, addend):
         self.augend = augend
         self.addend = addend
+
+    def reduce(self, toCurrency):
+        amount = self.augend.amount() + self.addend.amount()
+        return Money(amount, toCurrency)

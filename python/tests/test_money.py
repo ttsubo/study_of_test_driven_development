@@ -1,5 +1,5 @@
 from testtools import TestCase
-from example.money import Money
+from example.money import Money, Sum
 from example.bank import Bank
 
 class MoneyTest(TestCase):
@@ -29,3 +29,9 @@ class MoneyTest(TestCase):
         _sum = five.plus(five)
         self.assertEqual(five, _sum.augend)
         self.assertEqual(five, _sum.addend)
+
+    def testReduceSum(self):
+        _sum = Sum(Money.dollar(3), Money.dollar(4))
+        bank = Bank()
+        result = bank.reduce(_sum, "USD")
+        self.assertEqual(Money.dollar(7), result)
