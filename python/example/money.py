@@ -15,6 +15,9 @@ class Money(Expression):
     def plus(self, addend):
         return Sum(self, addend)
 
+    def reduce(self, toCurrency):
+        return self
+
     def amount(self):
         return self.__amount
 
