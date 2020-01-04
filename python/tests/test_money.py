@@ -1,6 +1,9 @@
 from testtools import TestCase
 from example.money import Money
 
+from testtools import TestCase
+from example.money import Money, Franc
+
 class MoneyTest(TestCase):
     def testMultiplication(self):
         five = Money.dollar(5)
@@ -22,3 +25,6 @@ class MoneyTest(TestCase):
     def testCurrency(self):
         self.assertEqual("USD", Money.dollar(1).currency())
         self.assertEqual("CHF", Money.franc(1).currency())
+
+    def testDifferentClassEquality(self):
+        self.assertTrue(Money(10, "CHF") == Franc(10, "CHF"))
