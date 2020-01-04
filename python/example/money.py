@@ -2,25 +2,28 @@ from example.expression import Expression
 
 class Money(Expression):
     def __init__(self, amount, currency):  
-        self.amount = amount
-        self._currency = currency
+        self.__amount = amount
+        self.__currency = currency
 
     def __eq__(self, other):
-        return (self.amount == other.amount
+        return (self.__amount == other.__amount
                 and self.currency() == other.currency())
 
     def times(self, multiplier):
-        return Money(self.amount * multiplier, self._currency)
+        return Money(self.__amount * multiplier, self.__currency)
 
     def plus(self, addend):
         return Sum(self, addend)
 
     def reduce(self, bank, toCurrency):
-        rate = bank.rate(self.currency(), toCurrency)
-        return Money(self.amount / rate, toCurrency)
+        rate = bank.rate(self.__currency, toCurrency)
+        return Money(self.__amount / rate, toCurrency)
+
+    def amount(self):
+        return self.__amount
 
     def currency(self):
-        return self._currency
+        return self.__currency
 
     @classmethod
     def dollar(cls, amount):
@@ -36,9 +39,12 @@ class Sum(Expression):
         self.addend = addend
 
     def reduce(self, bank, toCurrency):
-        amount = self.augend.reduce(bank, toCurrency).amount + \
-            self.addend.reduce(bank, toCurrency).amount
+        amount = self.augend.reduce(bank, toCurrency).amount() + \
+            self.addend.reduce(bank, toCurrency).amount()
         return Money(amount, toCurrency)
 
     def plus(self, addend):
         return Sum(self, addend)
+
+    def times(self, multiplier):
+        return Sum(self.augend.times(multiplier), self.addend.times(multiplier))
