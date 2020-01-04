@@ -15,18 +15,8 @@ class Money():
 
     @classmethod
     def dollar(cls, amount):
-        return Dollar(amount, "USD")
+        return Money(amount, "USD")
 
     @classmethod
     def franc(cls, amount):
-        return Franc(amount, "CHF")
-
-
-class Dollar(Money):
-    def __init__(self, amount, currency):
-        super().__init__(amount, currency)
-
-
-class Franc(Money):
-    def __init__(self, amount, currency):
-        super().__init__(amount, currency)
+        return Money(amount, "CHF")
