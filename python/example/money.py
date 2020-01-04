@@ -39,5 +39,9 @@ class Sum(Expression):
         self.addend = addend
 
     def reduce(self, bank, toCurrency):
-        amount = self.augend.amount() + self.addend.amount()
+        amount = self.augend.reduce(bank, toCurrency).amount() + \
+            self.addend.reduce(bank, toCurrency).amount()
         return Money(amount, toCurrency)
+
+    def plus(self, addend):
+        pass
