@@ -11,20 +11,23 @@ platform darwin -- Python 3.8.0, pytest-5.3.2, py-1.8.0, pluggy-0.13.1 -- /Users
 cachedir: .pytest_cache
 rootdir: /Users/ttsubo/source/study_of_test_driven_development/python, inifile: pytest.ini
 plugins: cov-2.8.1
-collected 3 items                                                                                                                          
+collected 4 items                                                                                                                          
 
-tests/test_money.py::MoneyTest::testCurrency PASSED                                                                                  [ 33%]
-tests/test_money.py::MoneyTest::testEquality PASSED                                                                                  [ 66%]
-tests/test_money.py::MoneyTest::testMultiplication PASSED                                                                            [100%]
+tests/test_money.py::MoneyTest::testCurrency PASSED                                                                                  [ 25%]
+tests/test_money.py::MoneyTest::testEquality PASSED                                                                                  [ 50%]
+tests/test_money.py::MoneyTest::testMultiplication PASSED                                                                            [ 75%]
+tests/test_money.py::MoneyTest::testSimpleAddition PASSED                                                                            [100%]
 
 ---------- coverage: platform darwin, python 3.8.0-final-0 -----------
-Name                  Stmts   Miss  Cover
------------------------------------------
-example/__init__.py       0      0   100%
-example/money.py         16      0   100%
------------------------------------------
-TOTAL                    16      0   100%
+Name                    Stmts   Miss  Cover
+-------------------------------------------
+example/__init__.py         0      0   100%
+example/bank.py             4      0   100%
+example/expression.py       3      0   100%
+example/money.py           19      0   100%
+-------------------------------------------
+TOTAL                      26      0   100%
 
 
-============================================================ 3 passed in 0.17s =============================================================
+============================================================ 4 passed in 0.17s =============================================================
 ```

@@ -1,9 +1,6 @@
 from testtools import TestCase
 from example.money import Money
-
-from testtools import TestCase
-from testtools import TestCase
-from example.money import Money
+from example.bank import Bank
 
 class MoneyTest(TestCase):
     def testMultiplication(self):
@@ -19,3 +16,10 @@ class MoneyTest(TestCase):
     def testCurrency(self):
         self.assertEqual("USD", Money.dollar(1).currency())
         self.assertEqual("CHF", Money.franc(1).currency())
+
+    def testSimpleAddition(self):
+        five = Money.dollar(5)
+        _sum = five.plus(five)
+        bank = Bank()
+        reduced = bank.reduce(_sum, "USD")
+        self.assertEqual(Money.dollar(10), reduced)
